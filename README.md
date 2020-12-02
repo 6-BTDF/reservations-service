@@ -47,34 +47,34 @@ API endpoints conform to a RESTful API architecture to retrieve and modify datab
 
 **/api/listings/**
 - GET request for all available listings
-This will return all available properties with respective fees and all booked reservation dates
+- This will return all available properties with respective fees and all booked reservation dates
 
 
 **/api/listings/:id**
 - GET request for a single listing
-This will return the property at the given ID with respective fees and all booked reservation dates.
-Response will be a JSON object that contains listing array information
+- This will return the property at the given ID with respective fees and all booked reservation dates.
+- Response will be a JSON object that contains listing array information
 
 
 **/api/listings/:id/makeReservation**
 - POST request for a single listing
 
-This endpoint allows you to create a reservation for specified dates, number of adults/children. It takes a valid JSON object and will return 200 HTTP code if reservation is saved successfully. 
-Request field will be accepted as { checkin: date, checkout: date, id: listingId, adults: Number, children: Number }
+- This endpoint allows you to create a reservation for specified dates, number of adults/children. It takes a valid JSON object and will return 200 HTTP code if reservation is saved successfully. 
+- Request field will be accepted as { checkin: date, checkout: date, id: listingId, adults: Number, children: Number }
 
 **/api/listings/:id/updateReservation**
 - PUT request for a single reservation
 
-This endpoint allows you to modify a reservation for specified dates, number of adults/children. It takes a valid JSON object and will return 200 HTTP code if reservation is saved successfully. 
-Request field will be accepted as { reservation: reservationNumber, id: listingId, checkin: date, checkout: date, id: listingId, adults: Number, children: Number }
+- This endpoint allows you to modify a reservation for specified dates, number of adults/children. It takes a valid JSON object and will return 200 HTTP code if reservation is saved successfully. 
+- Request field will be accepted as { reservation: reservationNumber, id: listingId, checkin: date, checkout: date, id: listingId, adults: Number, children: Number }
 
 
 **/api/listings/:id/deleteReservation**
 - DELETE request for a single reservation
-Request field will be accepted as { reservation: reservationNumber, id: listingId }
+- Request field will be accepted as { reservation: reservationNumber, id: listingId }
 
-This will delete the reservation and all associated information at this reservation ID.
-On success, the server will send back a HTTP response 200 OK to the request when the reservation is deleted.
+- This will delete the reservation and all associated information at this reservation ID.
+- On success, the server will send back a HTTP response 200 OK to the request when the reservation is deleted.
 
 
 
