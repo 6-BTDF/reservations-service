@@ -45,36 +45,33 @@ npm run build
 
 API endpoints conform to a RESTful API architecture to retrieve and modify database-hosted information. All responses will include HTTP response codes to indicate status and errors and data will come in JSON pretty format. All requests must include a Content-Type of application/json and the body must be valid JSON.
 
-**/api/listings/**
+**GET /api/listings/**
 - GET request for all available listings
-- This will return all available properties with respective fees and all booked reservation dates
+- Response will be HTTP status code 200 and a JSON object with all available properties, respective fees, booked reservation dates
 
-
-**/api/listings/:id**
+**GET /api/listings/:id**
 - GET request for a single listing
-- This will return the property at the given ID with respective fees and all booked reservation dates.
-- Response will be a JSON object that contains listing array information
+- Response will be HTTP status code 200 and a JSON object that contains property at the given ID with respective fees and all booked reservation dates
 
 
-**/api/listings/:id/makeReservation**
+**POST /api/listings/:id/makeReservation**
 - POST request for a single listing
-
-- This endpoint allows you to create a reservation for specified dates, number of adults/children. It takes a valid JSON object and will return 200 HTTP code if reservation is saved successfully. 
+- This endpoint allows you to create a reservation for specified dates, number of adults/children
+- Takes a valid JSON object and will return 201 HTTP code if reservation is saved successfully
 - Request field will be accepted as { checkin: date, checkout: date, id: listingId, adults: Number, children: Number }
 
-**/api/listings/:id/updateReservation**
+**PUT /api/listings/:id/updateReservation**
 - PUT request for a single reservation
-
-- This endpoint allows you to modify a reservation for specified dates, number of adults/children. It takes a valid JSON object and will return 200 HTTP code if reservation is saved successfully. 
+- This endpoint allows you to modify a reservation for specified dates, number of adults/children
+- Takes a valid JSON object and will return 204 HTTP code if reservation is saved successfully
 - Request field will be accepted as { reservation: reservationNumber, id: listingId, checkin: date, checkout: date, id: listingId, adults: Number, children: Number }
 
 
-**/api/listings/:id/deleteReservation**
+**DELETE /api/listings/:id/deleteReservation**
 - DELETE request for a single reservation
 - Request field will be accepted as { reservation: reservationNumber, id: listingId }
-
-- This will delete the reservation and all associated information at this reservation ID.
-- On success, the server will send back a HTTP response 200 OK to the request when the reservation is deleted.
+- This will delete the reservation and all associated information at this reservation number
+- On success, the server will send back a HTTP response 204 to the request when the reservation is deleted
 
 
 
