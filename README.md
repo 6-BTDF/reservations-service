@@ -67,8 +67,4 @@ This will delete the property and all associate information at this property ID.
 
 
 
-/api/listings/:id/delete
-DELETE request for a single listing
-
-
 
