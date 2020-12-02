@@ -46,31 +46,31 @@ npm run build
 API endpoints conform to a RESTful API architecture to retrieve and modify database-hosted information. All responses will include HTTP response codes to indicate status and errors and data will come in JSON pretty format. All requests must include a Content-Type of application/json and the body must be valid JSON.
 
 **/api/listings/**
-GET request for all available listings
+- GET request for all available listings
 This will return all available properties with respective fees and all booked reservation dates
 
 
 **/api/listings/:id**
-GET request for a single listing
+- GET request for a single listing
 This will return the property at the given ID with respective fees and all booked reservation dates.
 Response will be a JSON object that contains listing array information
 
 
 **/api/listings/:id/makeReservation**
-POST request for a single listing
+- POST request for a single listing
 
 This endpoint allows you to create a reservation for specified dates, number of adults/children. It takes a valid JSON object and will return 200 HTTP code if reservation is saved successfully. 
 Request field will be accepted as { checkin: date, checkout: date, id: listingId, adults: Number, children: Number }
 
 **/api/listings/:id/updateReservation**
-PUT request for a single reservation
+- PUT request for a single reservation
 
 This endpoint allows you to modify a reservation for specified dates, number of adults/children. It takes a valid JSON object and will return 200 HTTP code if reservation is saved successfully. 
 Request field will be accepted as { reservation: reservationNumber, id: listingId, checkin: date, checkout: date, id: listingId, adults: Number, children: Number }
 
 
 **/api/listings/:id/deleteReservation**
-DELETE request for a single reservation
+- DELETE request for a single reservation
 Request field will be accepted as { reservation: reservationNumber, id: listingId }
 
 This will delete the reservation and all associated information at this reservation ID.
