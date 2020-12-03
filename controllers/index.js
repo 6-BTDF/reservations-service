@@ -1,13 +1,5 @@
 const helpers = require('../db/models.js');
 
-function getAllListings(req, res) {
-  helpers.listingModel.find()
-    .then((listings) => {
-      res.header('Content-Type', 'application/json');
-      res.send(JSON.stringify(listings, 0, 2));
-    });
-}
-
 function getSpecificListing(req, res) {
   helpers.listingModel.find({ id: req.params.id })
     .then((listings) => {
@@ -19,7 +11,8 @@ function getSpecificListing(req, res) {
 
 //must modify
 function addBooking(req, res) {
-  helpers.listingModel.find({ id: req.params.id })
+  helpers.listingModel.findOneAndUpdate({ id: req.params.id },
+    {$push: { reserved: req.body } }, { new: true} )
     .then((listings) => {
       res.header('Content-Type', 'application/json');
       res.send(JSON.stringify(listings, 0, 2));
@@ -43,7 +36,6 @@ function deleteBooking(req, res) {
 }
 
 module.exports = {
-  getAllListings,
   getSpecificListing,
   addBooking,
   modifyBooking,

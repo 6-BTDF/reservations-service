@@ -1,0 +1,45 @@
+CREATE KEYSPACE herkbath WITH replication =
+  {‘class’: ‘SimpleStrategy’, ‘replication_factor’ : 1};
+
+CREATE TYPE herkbath.price (
+  dailyPrice decimal,
+  cleaningFee decimal,
+  taxes decimal,
+  weeklyDiscount tinyint,
+  monthlyDiscount tinyint
+)
+
+CREATE TYPE herkbath.guests (
+  adults tinyint,
+  children tinyint,
+  infants tinyint
+)
+
+CREATE TABLE herkbath.listings (
+  hotel_id uuid,
+  max_guests tinyint,
+  min_stay tinyint,
+  max_stay tinyint,
+  prices frozen<price>,
+  PRIMARY KEY (hotel_id))
+  WITH comment = ‘Q1. Find given hotel’
+
+CREATE TABLE herkbath.reservations_by_listing_id (
+  hotel_id uuid,
+  confirm_number uuid,
+  start_date date,
+  end_date date,
+  guests frozen<guests>,
+  guest_id uuid,
+  PRIMARY KEY ((hotel_id), start_date) )
+  WITH comment = ‘Q2. Find available rooms by listing id’;
+
+CREATE TABLE herkbath.reservations_by_confirmation (
+  hotel_id uuid,
+  confirm_number uuid,
+  start_date date,
+  end_date date,
+  guests frozen<guests>,
+  guest_id uuid,
+  PRIMARY KEY (confirm_number) )
+  WITH comment = ‘Q3. Find reservations by confirmation number’;
