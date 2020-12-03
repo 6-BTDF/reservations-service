@@ -53,6 +53,7 @@ API endpoints conform to a RESTful API architecture to retrieve and modify datab
 
 **GET /api/listings/:listingid**
 - GET request for a single listing
+- Request parameter of :listingid from API endpoint will be accepted. No request object is required.
 - Response will be HTTP status code 200 and a JSON object that contains property at the given ID with respective fees and all booked reservation dates
 
 **PATCH /api/listings/:listingid/updateListing**
@@ -67,18 +68,16 @@ API endpoints conform to a RESTful API architecture to retrieve and modify datab
 - This will delete the listing and all associated information for listing's reservations
 - On success, the server will send back a HTTP response 204 to the request when the reservation is deleted
 
+**GET /api/listings/:listingid/getReservations**
+- GET request for all reservations for a particular listingid
+- Request parameter of :listingid from API endpoint will be accepted. No request object is required.
+- Response will be HTTP status code 200 and a JSON object that contains property at the given ID with respective fees and all booked reservation dates
+
 **POST /api/listings/:listingid/makeReservation**
 - POST request for a single reservation
 - This endpoint allows you to create a reservation for specified dates, number of adults/children
 - Takes a valid JSON object and will return 201 HTTP code if reservation is saved successfully
 - Request field will be accepted as { checkin: date, checkout: date, id: listingId, adults: Number, children: Number }
-
-**PUT /api/listings/:listingid/updateReservation**
-- PUT request for a single reservation
-- This endpoint allows you to modify a reservation for specified dates, number of adults/children
-- Takes a valid JSON object and will return 204 HTTP code if reservation is saved successfully
-- Request field will be accepted as { reservation: reservationNumber, id: listingId, checkin: date, checkout: date, id: listingId, adults: Number, children: Number }
-
 
 **DELETE /api/listings/:listingid/deleteReservation**
 - DELETE request for a single reservation
