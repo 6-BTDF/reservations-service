@@ -66,7 +66,7 @@ API endpoints conform to a RESTful API architecture to retrieve and modify datab
 
 **DELETE /api/listings/:id/deleteReservation**
 - DELETE request for a single reservation
-- Request field will be accepted as { reservation: reservationNumber, id: listingId }
+- Request field will be accepted as a valid JSON object of { reservation: reservationNumber, id: listingId }
 - This will delete the reservation and all associated information at this reservation number
 - On success, the server will send back a HTTP response 204 to the request when the reservation is deleted
 
