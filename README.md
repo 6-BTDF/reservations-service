@@ -52,7 +52,7 @@ API endpoints conform to a RESTful API architecture to retrieve and modify datab
 
 
 **POST /api/listings/:listingid/makeReservation**
-- POST request for a single listing
+- POST request for a single reservation
 - This endpoint allows you to create a reservation for specified dates, number of adults/children
 - Takes a valid JSON object and will return 201 HTTP code if reservation is saved successfully
 - Request field will be accepted as { checkin: date, checkout: date, id: listingId, adults: Number, children: Number }
