@@ -55,8 +55,8 @@ API endpoints conform to a RESTful API architecture to retrieve and modify datab
 - GET request for a single listing
 - Response will be HTTP status code 200 and a JSON object that contains property at the given ID with respective fees and all booked reservation dates
 
-**PUT /api/listings/:listingid/updateListing**
-- PUT request for a single listing
+**PATCH /api/listings/:listingid/updateListing**
+- PATCH request for a single listing
 - This endpoint allows you to modify a listing for fees, discounts, max guests, max stays
 - Takes a valid JSON object and will return 204 HTTP code if reservation is saved successfully
 - Request field will be accepted as {  }
