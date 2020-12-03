@@ -45,11 +45,27 @@ npm run build
 
 API endpoints conform to a RESTful API architecture to retrieve and modify database-hosted information. All responses will include HTTP response codes to indicate status and errors and data will come in JSON pretty format. All requests must include a Content-Type of application/json and the body must be valid JSON.
 
+**POST /api/listings/newListing**
+- POST request for a single listing
+- This endpoint allows you to create a new listing for a house
+- Takes a valid JSON object and will return 201 HTTP code if listing is saved successfully
+- Request field will be accepted as {  }
 
 **GET /api/listings/:listingid**
 - GET request for a single listing
 - Response will be HTTP status code 200 and a JSON object that contains property at the given ID with respective fees and all booked reservation dates
 
+**PUT /api/listings/:listingid/updateListing**
+- PUT request for a single listing
+- This endpoint allows you to modify a listing for fees, discounts, max guests, max stays
+- Takes a valid JSON object and will return 204 HTTP code if reservation is saved successfully
+- Request field will be accepted as {  }
+
+**DELETE /api/listings/:listingid/deleteListing**
+- DELETE request for a single reservation
+- Request parameter of :listingid from API endpoint will be accepted. No request object is required.
+- This will delete the listing and all associated information for listing's reservations
+- On success, the server will send back a HTTP response 204 to the request when the reservation is deleted
 
 **POST /api/listings/:listingid/makeReservation**
 - POST request for a single reservation
