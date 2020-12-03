@@ -45,9 +45,6 @@ npm run build
 
 API endpoints conform to a RESTful API architecture to retrieve and modify database-hosted information. All responses will include HTTP response codes to indicate status and errors and data will come in JSON pretty format. All requests must include a Content-Type of application/json and the body must be valid JSON.
 
-**GET /api/listings/**
-- GET request for all available listings
-- Response will be HTTP status code 200 and a JSON object with all available properties, respective fees, booked reservation dates
 
 **GET /api/listings/:id**
 - GET request for a single listing
