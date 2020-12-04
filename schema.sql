@@ -14,7 +14,7 @@ CREATE SCHEMA IF NOT EXISTS herkbath
 DROP TABLE IF EXISTS herkbath.listings
 
 CREATE TABLE herkbath.listings (
-  id uuid NOT NULL AUTO_INCREMENT,
+  id SERIAL NOT NULL,
   dailyPrice NUMERIC(8,2) DEFAULT 100 NOT NULL CONSTRAINT positive_dailyPrice CHECK (dailyPrice > 0),
   cleaningFee NUMERIC(3,2) DEFAULT 100 NOT NULL CONSTRAINT positive_cleaningFee CHECK (cleaningFee > 0),
   taxes NUMERIC(2,2) DEFAULT 8 NOT NULL CONSTRAINT positive_taxes CHECK (taxes > 0),
@@ -34,15 +34,15 @@ CREATE TABLE herkbath.listings (
 DROP TABLE IF EXISTS herkbath.bookings
 
 CREATE TABLE herkbath.bookings (
-  id uuid NOT NULL AUTO_INCREMENT,
+  id SERIAL NOT NULL,
   check_in DATE NOT NULL,
   check_out DATE NOT NULL,
   total_price SMALLINT NOT NULL CONSTRAINT positive_price CHECK (positive_price > 0),
   adults SMALLINT DEFAULT 1 NOT NULL CONSTRAINT positive_adults CHECK (adults > 0),
   children SMALLINT DEFAULT 0 CONSTRAINT positive_children CHECK (children >= 0),
   infants SMALLINT DEFAULT 0 CONSTRAINT positive_infants CHECK (infants >= 0),
-  id_listings uuid references hb.listings(id),
-  id_users uuid references hb.users(id),
+  id_listings references hb.listings(id),
+  id_users references hb.users(id),
   PRIMARY KEY (id)
 )
 
@@ -54,7 +54,7 @@ CREATE TABLE herkbath.bookings (
 DROP TABLE IF EXISTS herkbath.users
 
 CREATE TABLE herkbath.users (
-  id uuid NOT NULL AUTO_INCREMENT,
+  id SERIAL NOT NULL,
   username CHAR(30) NOT NULL,
   PRIMARY KEY (id)
 )

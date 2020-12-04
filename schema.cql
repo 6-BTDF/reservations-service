@@ -16,7 +16,7 @@ CREATE TYPE herkbath.guests (
 )
 
 CREATE TABLE herkbath.listings (
-  hotel_id uuid,
+  hotel_id int,
   max_guests tinyint,
   min_stay tinyint,
   max_stay tinyint,
@@ -25,21 +25,21 @@ CREATE TABLE herkbath.listings (
   WITH comment = ‘Q1. Find given hotel’
 
 CREATE TABLE herkbath.reservations_by_listing_id (
-  hotel_id uuid,
-  confirm_number uuid,
+  hotel_id int,
+  confirm_number int,
   start_date date,
   end_date date,
   guests frozen<guests>,
-  guest_id uuid,
+  guest_id int,
   PRIMARY KEY ((hotel_id), start_date) )
   WITH comment = ‘Q2. Find available rooms by listing id’;
 
 CREATE TABLE herkbath.reservations_by_confirmation (
-  hotel_id uuid,
-  confirm_number uuid,
+  hotel_id int,
+  confirm_number int,
   start_date date,
   end_date date,
   guests frozen<guests>,
-  guest_id uuid,
+  guest_id int,
   PRIMARY KEY (confirm_number) )
   WITH comment = ‘Q3. Find reservations by confirmation number’;
