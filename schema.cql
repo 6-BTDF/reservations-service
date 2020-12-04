@@ -4,7 +4,10 @@ CREATE KEYSPACE herkbath WITH replication =
 CREATE TYPE herkbath.price (
   dailyPrice decimal,
   cleaningFee decimal,
+  serviceFee decimal,
   taxes decimal,
+  holidayPremium tinyint,
+  weekendPremium tinyint,
   weeklyDiscount tinyint,
   monthlyDiscount tinyint
 )
