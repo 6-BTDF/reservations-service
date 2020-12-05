@@ -6,7 +6,7 @@ const listingSchema = new mongoose.Schema({
   id: Number,
   owner: String,
   name: String,
-  reserved: [Date],
+  reserved: Array,
   fees: {
     pernight: Number,
     cleaning: Number,
