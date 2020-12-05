@@ -29,20 +29,22 @@ CREATE TABLE herkbath.listings (
 
 CREATE TABLE herkbath.reservations_by_listing_id (
   hotel_id int,
-  confirm_number int,
   start_date date,
   end_date date,
+  total_price decimal,
   guests frozen<herkbath.guests>,
+  confirm_number int,
   guest_id int,
   PRIMARY KEY ((hotel_id), start_date) )
   WITH comment = ‘Q2. Find available rooms by listing id’;
 
 CREATE TABLE herkbath.reservations_by_confirmation (
   hotel_id int,
-  confirm_number int,
   start_date date,
   end_date date,
+  total_price decimal,
   guests frozen<herkbath.guests>,
+  confirm_number int,
   guest_id int,
   PRIMARY KEY (confirm_number) )
-  WITH comment = ‘Q3. Find reservations by confirmation number’;
+  WITH comment = ‘Q3. Find reservations by confirmation no’;

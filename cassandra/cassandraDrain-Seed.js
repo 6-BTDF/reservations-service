@@ -40,7 +40,7 @@ const bookingsGen = (listingId, counter, numToWrite, prices, taxes) => {
 };
 
 function writeTenMillionListings(writer, encoding, callback) {
-  let i = 100;
+  let i = 10000000;
   let id = 0;
   let bookingId = 1;
   function write() {
@@ -57,8 +57,8 @@ function writeTenMillionListings(writer, encoding, callback) {
       } else {
         // see if we should continue, or wait
         // don't pass the callback, because we're not done yet.
-        if (id % 10 === 0) {console.log(id)}
-        writer.write(reservationsGen(id, baseFee, tax), encoding, callback);
+        if (id % 250000 === 0) {console.log(id)}
+        writer.write(reservationsGen(id, baseFee, tax), encoding);
         ok = writeBookings.write(bookingsGen(id, bookingId, numToWrite, baseFee, tax), encoding);
       }
       bookingId += numToWrite;
