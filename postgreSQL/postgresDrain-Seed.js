@@ -5,9 +5,9 @@ const fs = require('fs');
 const csvWriter = require('csv-write-stream');
 
 const faker = require('faker');
-const writeListings = fs.createWriteStream('cListings.csv');
+const writeListings = fs.createWriteStream('postgresListings.csv');
 writeListings.write('id,dailyPrice,cleaningFee,serviceFee,taxes,holidayPremium,weekendPremium,weeklyDiscount,monthlyDiscount,max_guests,min_stay,max_stay\n')
-const writeBookings = fs.createWriteStream('cBookings.csv');
+const writeBookings = fs.createWriteStream('postgresBookings.csv');
 writeBookings.write('id,check_in,check_out,total_price,adults,children,infants,id_listings,id_users\n')
 const writeUsers = csvWriter();
 
@@ -75,7 +75,7 @@ function writeTenMillionListings(writer, encoding, callback) {
 
 const usersGen = () => {
   let counter = 1;
-  writeUsers.pipe(fs.createWriteStream('cUsers.csv'));
+  writeUsers.pipe(fs.createWriteStream('postgresUsers.csv'));
   for (let i = 0; i < 1000000; i++) {
     writeUsers.write({
       id: counter++,

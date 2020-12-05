@@ -8,10 +8,10 @@ const faker = require('faker');
 const writeListings = fs.createWriteStream('cassListings.csv');
 writeListings.write('id,max_guests,min_stay,max_stay,prices\n');
 
-const writeBookingsbyListingId = fs.createWriteStream('cassBookings.csv');
+const writeBookingsbyListingId = fs.createWriteStream('cassReservationsById.csv');
 writeBookings.write('id,id_listings,check_in,check_out,total_price,adults,children,infants,id_users\n');
 
-const writeBookings = fs.createWriteStream('cBookings.csv');
+const writeBookings = fs.createWriteStream('cassReservationsByConf.csv');
 writeBookings.write('id,id_listings,check_in,check_out,total_price,adults,children,infants,id_users\n');
 
 
