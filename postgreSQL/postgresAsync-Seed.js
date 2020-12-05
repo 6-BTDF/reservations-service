@@ -52,7 +52,7 @@ const reservationsGen = (listingsCounter) => {
     bookingsWriter.end();
     bookingsWriter.on("finish", () => {
       resolve(true);
-      console.log('done with bookings ' + listingsCounter)
+      console.log('done with listings ' + listingsCounter)
     });
     bookingsWriter.on("error", reject);
   });
@@ -107,5 +107,4 @@ async function seedBookingsAndListings() {
   }
 }
 seedBookingsAndListings();
-// bookingsGen();
 usersGen();

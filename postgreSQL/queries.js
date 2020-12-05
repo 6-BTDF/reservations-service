@@ -8,9 +8,8 @@ const pool = new Pool({
 })
 
 
-const importFile = (request, response) => {
-
-  pool.query('DELETE FROM users WHERE id = $1', [id], (error, results) => {
+const importFile = () => {
+  pool.query('COPY herkbath.listings(id', [id], (error, results) => {
     if (error) {
       throw error
     }
