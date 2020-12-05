@@ -7,9 +7,10 @@ const pool = new Pool({
   port: 5432,
 })
 
+var file = './cBookings.csv'
 
 const importFile = () => {
-  pool.query('COPY herkbath.listings(id', [id], (error, results) => {
+  pool.query(`COPY herkbath.listings FROM ${file} WITH (FORMAT csv)`, (error, results) => {
     if (error) {
       throw error
     }
