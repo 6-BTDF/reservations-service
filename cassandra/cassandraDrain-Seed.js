@@ -6,14 +6,10 @@ const csvWriter = require('csv-write-stream');
 
 const faker = require('faker');
 const writeListings = fs.createWriteStream('cassListings.csv');
-writeListings.write('id,max_guests,min_stay,max_stay,prices\n');
+writeListings.write('hotel_id,max_guests,min_stay,max_stay,prices\n');
 
-const writeBookingsbyListingId = fs.createWriteStream('cassReservationsById.csv');
-writeBookings.write('id,id_listings,check_in,check_out,total_price,adults,children,infants,id_users\n');
-
-const writeBookings = fs.createWriteStream('cassReservationsByConf.csv');
-writeBookings.write('id,id_listings,check_in,check_out,total_price,adults,children,infants,id_users\n');
-
+const writeBookings = fs.createWriteStream('cassReservations.csv');
+writeBookings.write('hotel_id,confirm_number,start_date,end_date,guests,guest_id\n');
 
 const random = (num, skew = 1) => Math.floor(Math.random() ** skew * num);
 
@@ -37,14 +33,14 @@ const bookingsGen = (listingId, counter, numToWrite, prices, taxes) => {
     const totalCharges = ((prices * (1.125 + taxes) * stayAmount) + (prices * 0.5)).toFixed(2);
     const startFormatted = `${startDate.getFullYear()}-${startDate.getMonth() + 1}-${startDate.getDate()}`;
     const endFormatted = `${endDate.getFullYear()}-${endDate.getMonth() + 1}-${endDate.getDate()}`;
-    bookings += `${counter++},${listingId},${startFormatted},${endFormatted},${totalCharges},${Math.floor(random(5) + 1)},${Math.floor(random(5))},${Math.floor(random(5))},${Math.floor(random(1000000) + 1)}\n`;
+    bookings += `${listingId},${startFormatted},${endFormatted},${totalCharges}, { adults: ${Math.floor(random(5) + 1)},children: ${Math.floor(random(5))},infants: ${Math.floor(random(5))} },${counter++},${Math.floor(random(1000000) + 1)}\n`;
     startDate.setDate(endDate.getDate() + random(3) + 1);
   }
   return bookings;
 };
 
 function writeTenMillionListings(writer, encoding, callback) {
-  let i = 10000000;
+  let i = 100;
   let id = 0;
   let bookingId = 1;
   function write() {
@@ -61,8 +57,8 @@ function writeTenMillionListings(writer, encoding, callback) {
       } else {
         // see if we should continue, or wait
         // don't pass the callback, because we're not done yet.
-        if (id % 100000 === 0) {console.log(id)}
-        writer.write(reservationsGen(id, baseFee, tax), encoding);
+        if (id % 10 === 0) {console.log(id)}
+        writer.write(reservationsGen(id, baseFee, tax), encoding, callback);
         ok = writeBookings.write(bookingsGen(id, bookingId, numToWrite, baseFee, tax), encoding);
       }
       bookingId += numToWrite;
@@ -82,5 +78,5 @@ writeTenMillionListings(writeListings, 'utf-8', () => {
   writeBookings.end();
 });
 
-// bookingsGen();
-usersGen();
+
+
