@@ -5,10 +5,11 @@ const fs = require('fs');
 const csvWriter = require('csv-write-stream');
 
 const faker = require('faker');
-const writeListings = fs.createWriteStream('postgresListings.csv');
-writeListings.write('id,dailyPrice,cleaningFee,serviceFee,taxes,holidayPremium,weekendPremium,weeklyDiscount,monthlyDiscount,max_guests,min_stay,max_stay\n')
-const writeBookings = fs.createWriteStream('postgresBookings.csv');
-writeBookings.write('id,check_in,check_out,total_price,adults,children,infants,id_listings,id_users\n')
+
+const writeListings = fs.createWriteStream('postgresListingstest.csv');
+writeListings.write('id,dailyPrice,cleaningFee,serviceFee,taxes,holidayPremium,weekendPremium,weeklyDiscount,monthlyDiscount,max_guests,min_stay,max_stay\n');
+const writeBookings = fs.createWriteStream('postgresBookingstest.csv');
+writeBookings.write('id,check_in,check_out,total_price,adults,children,infants,id_listings,id_users\n');
 const writeUsers = csvWriter();
 
 const random = (num, skew = 1) => Math.floor(Math.random() ** skew * num);
@@ -40,7 +41,7 @@ const bookingsGen = (listingId, counter, numToWrite, prices, taxes) => {
 };
 
 function writeTenMillionListings(writer, encoding, callback) {
-  let i = 10000000;
+  let i = 100;
   let id = 0;
   let bookingId = 1;
   function write() {
@@ -57,7 +58,7 @@ function writeTenMillionListings(writer, encoding, callback) {
       } else {
         // see if we should continue, or wait
         // don't pass the callback, because we're not done yet.
-        if (id % 100000 === 0) {console.log(id)}
+        if (id % 100000 === 0) { console.log(id); }
         writer.write(reservationsGen(id, baseFee, tax), encoding);
         ok = writeBookings.write(bookingsGen(id, bookingId, numToWrite, baseFee, tax), encoding);
       }
@@ -66,11 +67,11 @@ function writeTenMillionListings(writer, encoding, callback) {
     if (i > 0) {
       // had to stop early!
       // write some more once it drains
-      writeBookings.once('drain', write)
+      writeBookings.once('drain', write);
       writer.once('drain', write);
     }
   }
-  write()
+  write();
 }
 
 const usersGen = () => {

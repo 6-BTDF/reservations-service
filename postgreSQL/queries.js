@@ -1,19 +1,37 @@
-const Pool = require('pg').Pool
-const pool = new Pool({
-  user: 'postgres',
+const { Client } = require('pg')
+const path = require('path')
+const client = new Client({
   host: 'localhost',
+  user: 'postgres',
   database: 'sdc',
-  password: '',
-  port: 5432,
+  port: 5432
 })
 
-var file = './cBookings.csv'
+client.connect()
+  .then((response)=> {console.log('connected to db!')})
+  .catch((err)=> {console.log(err)})
 
-const importFile = () => {
-  pool.query(`COPY herkbath.listings FROM ${file} WITH (FORMAT csv)`, (error, results) => {
+var bookings = path.join(__dirname, 'postgresBookingstest.csv')
+var listings = path.join(__dirname, 'postgresListings.csv')
+
+const importListings = () => {
+  client.query(`COPY herkbath.listings(id,dailyPrice,cleaningFee,serviceFee,taxes,holidayPremium,weekendPremium,weeklyDiscount,monthlyDiscount,max_guests,min_stay,max_stay) FROM '${listings}' DELIMITER ',' CSV HEADER`, (error, results) => {
     if (error) {
       throw error
+    } else  {
+      console.log('this worked! ', results)
     }
-    response.status(200).send(`User deleted with ID: ${id}`)
   })
 }
+
+const importBookings = () => {
+  client.query(`COPY herkbath.bookings(id,check_in,check_out,total_price,adults,children,infants,id_listings,id_users) FROM '${bookings}' DELIMITER ',' CSV HEADER`, (error, results) => {
+    if (error) {
+      throw error
+    } else  {
+      console.log('this worked! ', results)
+    }
+  })
+}
+
+importFile();

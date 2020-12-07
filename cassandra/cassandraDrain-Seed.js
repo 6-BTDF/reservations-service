@@ -5,6 +5,7 @@ const fs = require('fs');
 const csvWriter = require('csv-write-stream');
 
 const faker = require('faker');
+
 const writeListings = fs.createWriteStream('cassListings.csv');
 writeListings.write('hotel_id,max_guests,min_stay,max_stay,prices\n');
 
@@ -57,7 +58,7 @@ function writeTenMillionListings(writer, encoding, callback) {
       } else {
         // see if we should continue, or wait
         // don't pass the callback, because we're not done yet.
-        if (id % 250000 === 0) {console.log(id)}
+        if (id % 100000 === 0) { console.log(id); }
         writer.write(reservationsGen(id, baseFee, tax), encoding);
         ok = writeBookings.write(bookingsGen(id, bookingId, numToWrite, baseFee, tax), encoding);
       }
@@ -66,17 +67,14 @@ function writeTenMillionListings(writer, encoding, callback) {
     if (i > 0) {
       // had to stop early!
       // write some more once it drains
-      writeBookings.once('drain', write)
+      writeBookings.once('drain', write);
       writer.once('drain', write);
     }
   }
-  write()
+  write();
 }
 
 writeTenMillionListings(writeListings, 'utf-8', () => {
   writeListings.end();
   writeBookings.end();
 });
-
-
-

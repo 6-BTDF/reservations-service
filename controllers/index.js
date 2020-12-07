@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const helpers = require('../db/models.js');
 
 function getSpecificListing(req, res) {
@@ -16,7 +17,8 @@ function addBooking(req, res) {
     .then((listings) => {
       res.header('Content-Type', 'application/json');
       res.send(JSON.stringify(listings, 0, 2));
-    });
+    })
+    .catch(res.sendStatus(500));
 }
 
 function modifyBooking(req, res) {
@@ -24,7 +26,8 @@ function modifyBooking(req, res) {
     .then((listings) => {
       res.header('Content-Type', 'application/json');
       res.send(JSON.stringify(listings, 0, 2));
-    });
+    })
+    .catch(res.sendStatus(500));
 }
 
 function deleteBooking(req, res) {
@@ -32,7 +35,8 @@ function deleteBooking(req, res) {
     .then((listings) => {
       res.header('Content-Type', 'application/json');
       res.send(JSON.stringify(listings, 0, 2));
-    });
+    })
+    .catch(res.sendStatus(500));
 }
 
 module.exports = {
