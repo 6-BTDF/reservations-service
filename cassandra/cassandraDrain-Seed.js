@@ -6,11 +6,11 @@ const csvWriter = require('csv-write-stream');
 
 const faker = require('faker');
 
-const writeListings = fs.createWriteStream('cassListings.csv');
-writeListings.write('hotel_id,max_guests,min_stay,max_stay,prices\n');
+const writeListings = fs.createWriteStream('cassListingstest.csv');
+writeListings.write('hotel_id|max_guests|min_stay|max_stay|dailyPrice|cleaningFee|serviceFee|taxes|holidayPremium|weekendPremium|weeklyDiscount|monthlyDiscount\n');
 
-const writeBookings = fs.createWriteStream('cassReservations.csv');
-writeBookings.write('hotel_id,confirm_number,start_date,end_date,guests,guest_id\n');
+const writeBookings = fs.createWriteStream('cassReservationstest.csv');
+writeBookings.write('hotel_id|confirm_number|start_date|end_date|adults|children|infants|guest_id\n');
 
 const random = (num, skew = 1) => Math.floor(Math.random() ** skew * num);
 
@@ -19,7 +19,7 @@ const reservationsGen = (listingsCounter, baseFee, tax) => {
   const discount = Math.round(random(40)) / 4;
   const premium = Math.round(random(40)) / 4;
   const currentId = listingsCounter;
-  return `${currentId},${random(14) + 2},${random(3) + 1},${random(40) + 3},{ dailyPrice: ${baseFee.toFixed(2)},cleaningFee: ${(baseFee * 0.5).toFixed(2)},serviceFee: ${(baseFee * 0.125).toFixed(2)},taxes: ${tax},holidayPremium: ${premium + 15},weekendPremium: ${premium + 10},weeklyDiscount: ${discount + 10},monthlyDiscount: ${discount + 15} }\n`;
+  return `${currentId}|${random(14) + 2}|${random(3) + 1}|${random(40) + 3}|${baseFee.toFixed(2)}|${(baseFee * 0.5).toFixed(2)}|${(baseFee * 0.125).toFixed(2)}|${tax}|${premium + 15}|${premium + 10}|${discount + 10}|${discount + 15}\n`;
 };
 
 const bookingsGen = (listingId, counter, numToWrite, prices, taxes) => {
@@ -34,14 +34,14 @@ const bookingsGen = (listingId, counter, numToWrite, prices, taxes) => {
     const totalCharges = ((prices * (1.125 + taxes) * stayAmount) + (prices * 0.5)).toFixed(2);
     const startFormatted = `${startDate.getFullYear()}-${startDate.getMonth() + 1}-${startDate.getDate()}`;
     const endFormatted = `${endDate.getFullYear()}-${endDate.getMonth() + 1}-${endDate.getDate()}`;
-    bookings += `${listingId},${startFormatted},${endFormatted},${totalCharges}, { adults: ${Math.floor(random(5) + 1)},children: ${Math.floor(random(5))},infants: ${Math.floor(random(5))} },${counter++},${Math.floor(random(1000000) + 1)}\n`;
+    bookings += `${listingId}|${counter++}|${startFormatted}|${endFormatted}|${totalCharges}|${Math.floor(random(5) + 1)}|${Math.floor(random(5))}|${Math.floor(random(5))}|${Math.floor(random(1000000) + 1)}\n`;
     startDate.setDate(endDate.getDate() + random(3) + 1);
   }
   return bookings;
 };
 
 function writeTenMillionListings(writer, encoding, callback) {
-  let i = 10000000;
+  let i = 1000;
   let id = 0;
   let bookingId = 1;
   function write() {
