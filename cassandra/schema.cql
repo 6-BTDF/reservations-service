@@ -43,7 +43,7 @@ CREATE TABLE herkbath.reservations_by_listing_id (
   children tinyint,
   infants tinyint,
   guest_id int,
-  PRIMARY KEY ((confirm_number), hotel_id) )
+  PRIMARY KEY ((hotel_id), confirm_number) )
   WITH comment = 'Q2. Find available rooms by listing id'
 
 CREATE TABLE herkbath.reservations_by_confirmation (
