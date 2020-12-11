@@ -34,8 +34,8 @@ function addListing(req, res) {
 // patch for single listing
 function modifyListing(req, res) {
   const keys = Object.keys(req.body);
-  const vals = `'${Object.values(req.body).join("','")}'`;
-  pool.query(`UPDATE herkbath.listings SET ${req.params} = ${req.params.field} WHERE listings_id = ${req.params.id}`, (err, listings) => {
+
+  pool.query(`UPDATE herkbath.listings SET (${keys}) = (SELECT ${keys} FROM json_populate_record (NULL::herkbath.listings, '${JSON.stringify(req.body)}')) WHERE listings_id = ${req.params.id}`, (err, listings) => {
     if (err) {
       res.sendStatus(500);
     } else {
