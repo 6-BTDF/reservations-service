@@ -16,24 +16,10 @@ function getListing(req, res) {
 
 // add for single listing
 function addListing(req, res) {
-  let fields = '';
-  let values = '';
-  let keys = Object.keys(req.body);
-  let vals = Object.values(req.body);
-  for (let i = 0; i < keys.length; i++) {
-    fields += keys[i];
-    if (isNaN(vals[i])) {
-      values += `'${vals[i]}'`;
-    } else {
-      values += vals[i];
-    }
-    if (i < keys.length - 1) {
-      fields += ',';
-      values += ',';
-    }
-  }
+  const keys = Object.keys(req.body);
+  const vals = `'${Object.values(req.body).join("','")}'`;
 
-  pool.query(`INSERT INTO herkbath.listings (${fields}) VALUES (${values})`, (err, listings) => {
+  pool.query(`INSERT INTO herkbath.listings (${keys}) VALUES (${vals})`, (err, listings) => {
     if (err) {
       console.log(err);
       res.sendStatus(500);
@@ -47,6 +33,8 @@ function addListing(req, res) {
 
 // patch for single listing
 function modifyListing(req, res) {
+  const keys = Object.keys(req.body);
+  const vals = `'${Object.values(req.body).join("','")}'`;
   pool.query(`UPDATE herkbath.listings SET ${req.params} = ${req.params.field} WHERE listings_id = ${req.params.id}`, (err, listings) => {
     if (err) {
       res.sendStatus(500);

@@ -16,24 +16,10 @@ function getReservation(req, res) {
 
 // add for single listing
 function makeReservation(req, res) {
-  let fields = '';
-  let values = '';
-  let keys = Object.keys(req.body);
-  let vals = Object.values(req.body);
-  for (let i = 0; i < keys.length; i++) {
-    fields += keys[i];
-    if (isNaN(vals[i])) {
-      values += `'${vals[i]}'`;
-    } else {
-      values += vals[i];
-    }
-    if (i < keys.length - 1) {
-      fields += ',';
-      values += ',';
-    }
-  }
+  const keys = Object.keys(req.body);
+  const vals = `'${Object.values(req.body).join("','")}'`;
 
-  pool.query(`INSERT INTO herkbath.bookings (${fields}) VALUES (${values})`, (err, listings) => {
+  pool.query(`INSERT INTO herkbath.bookings (${keys}) VALUES (${vals})`, (err, listings) => {
     if (err) {
       res.sendStatus(500);
     } else {
@@ -55,7 +41,6 @@ function deleteReservation(req, res) {
     }
   });
 }
-
 
 module.exports = {
   getReservation,
