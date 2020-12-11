@@ -10,7 +10,8 @@ const app = express();
 
 app.use(morgan('dev'));
 app.use(express.json());
-app.use('/api/listings/:id', express.static(path.join(__dirname, '..', 'client', 'dist')));
+// app.use('/api/listings/:id', express.static(path.join(__dirname, '..', 'client', 'dist')));
+app.use('/listings/:id', express.static(path.join(__dirname, '..', 'client', 'dist')));
 
 app.get('/api/listings/:id', listings.getListing);
 app.post('/api/listings/:id/newListing', listings.addListing);
