@@ -17,15 +17,15 @@ function Fees({ listingData, checkInDate, checkOutDate }) {
       </ul>
       <ul className={`${styles.cleaning} ${styles.fee}`}>
         <span id={styles.cleaningDescription}>Cleaning Fee</span>
-        <span className={styles.price}>{`$${listingData.cleaningfee}`}</span>
+        <span className={styles.price}>{`$${parseInt(listingData.cleaningfee)}`}</span>
       </ul>
       <ul className={`${styles.service} ${styles.fee}`}>
         <span id={styles.serviceDescription}>Service Fee</span>
-        <span className={`${styles.price} ${styles.this}`}>{`$${listingData.servicefee}`}</span>
+        <span className={`${styles.price} ${styles.this}`}>{`$${parseInt(listingData.servicefee)}`}</span>
       </ul>
       <ul className={`${styles.total} ${styles.fee}`}>
         <span>Total</span>
-        <span>{`$${listingData.cleaningfee + listingData.dailyprice * lengthOfStay + listingData.servicefee}`}</span>
+        <span>{`$${parseInt(listingData.cleaningfee) + parseInt(listingData.dailyprice) * lengthOfStay + parseInt(listingData.servicefee)}`}</span>
       </ul>
     </div>
   );
