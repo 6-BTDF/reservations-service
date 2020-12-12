@@ -1,4 +1,4 @@
-# BTDF
+# Herkshire Bathaway
 
 Reservations component for a vacation rental marketplace site
 
@@ -49,20 +49,21 @@ API endpoints conform to a RESTful API architecture to retrieve and modify datab
 - POST request for a single listing
 - This endpoint allows you to create a new listing for a house
 - Takes a valid JSON object and will return 201 HTTP code if listing is saved successfully
-- Request field will be accepted where dailyPrice, cleaningFee and taxes are required and other parameters are optional 
-```{ dailyPrice: Number, cleaningFee: Number, taxes: Number, [max_guests: Number, min_stay: Number, max_stay: Number, monthlyDiscount: Number, weeklyDiscount: Number]}```
+- Request field will be accepted where dailyPrice, cleaningFee and taxes are required and other parameters are optional but highly recommended. Default values will be assigned to the other objects but this may not be the desired charges.
+```{ owner: Integer, listings_name: String [dailyPrice: Number, cleaningFee: Number, serviceFee: Number, taxes: Number, max_guests: Number, min_stay: Number, max_stay: Number, monthlyDiscount: Number, weeklyDiscount: Number, holidayPremium: Number, weekendPremium: Number]}```
 
 **GET /api/listings/:listingid**
 - GET request for a single listing
 - Request parameter of :listingid from API endpoint will be accepted. No request object is required.
 - Response will be HTTP status code 200 and a JSON object that contains property at the given ID with respective fees and all booked reservation dates
+```{ owner: String, listings_name: String, dailyPrice: Number, cleaningFee: Number, serviceFee: Number, taxes: Number, max_guests: Number, min_stay: Number, max_stay: Number, monthlyDiscount: Number, weeklyDiscount: Number, holidayPremium: Number, weekendPremium: Number, reserved: [{check-in: ISO Date, check out: ISO Date}]```
 
 **PATCH /api/listings/:listingid/updateListing**
 - PATCH request for a single listing
 - This endpoint allows you to modify a listing for fees, discounts, max guests, max stays
 - Takes a valid JSON object and will return 204 HTTP code if reservation is saved successfully
-- Request field will be accepted where listingID is required and other parameters are optional 
-```{ id: listingId, [dailyPrice: Number, max_guests: Number, min_stay: Number, max_stay: Number, monthlyDiscount: Number, weeklyDiscount: Number]}```
+- Listing ID should not be included (it will be retrieved from the path. Any number of parameters below can be changed
+```{  owner: Integer, listings_name: String, dailyPrice: Number, cleaningFee: Number, serviceFee: Number, taxes: Number, max_guests: Number, min_stay: Number, max_stay: Number, monthlyDiscount: Number, weeklyDiscount: Number, holidayPremium: Number, weekendPremium: Number}```
 
 **DELETE /api/listings/:listingid/deleteListing**
 - DELETE request for a single reservation
@@ -73,14 +74,15 @@ API endpoints conform to a RESTful API architecture to retrieve and modify datab
 **GET /api/listings/:listingid/getReservations**
 - GET request for all reservations for a particular listingid
 - Request parameter of :listingid from API endpoint will be accepted. No request object is required.
-- Response will be HTTP status code 200 and a JSON object that contains property at the given ID with respective fees and all booked reservation dates
+- Response will be HTTP status code 200 and a JSON object that contains reservation information as
+```{bookings_id: Number, check_in: ISO string, check_out: ISO string, total_price: Number, adults: Number, children: NUmber, infants: Number, listings_name: String, owner: String}```
 
 **POST /api/listings/:listingid/makeReservation**
 - POST request for a single reservation
 - This endpoint allows you to create a reservation for specified dates, number of adults/children
 - Takes a valid JSON object and will return 201 HTTP code if reservation is saved successfully
-- Request field will be accepted as 
-```{ checkin: date, checkout: date, id: listingId, adults: Number, children: Number }```
+- Request field will be accepted as required fields with optional paramters below
+```{ checkin: date, checkout: date, id: listingId, id_users: Number, [ adults: Number, children: Number, infants: Number ]}```
 
 **DELETE /api/listings/:listingid/deleteReservation**
 - DELETE request for a single reservation
