@@ -1,0 +1,54 @@
+#container {
+  display: flex;
+  justify-content: center;
+  max-width: 80%;
+  margin: auto;
+  margin-top: 50px;
+}
+#centerBody {
+  width: 653px;
+}
+#entireCabin {
+  border-bottom: 1px rgb(221,221,221) solid;
+}
+#entireHome {
+  border-bottom: 1px rgb(221,221,221) solid;
+}
+#contactHost {
+  border-bottom: 1px rgb(221,221,221) solid;
+}
+#sleepingArrangements {
+  border-bottom: 1px rgb(221,221,221) solid;
+}
+#amenities {
+  border-bottom: 1px rgb(221,221,221) solid;
+}
+
+#entireCabin > img{
+  user-select: none;
+  -webkit-user-drag: none;
+}
+#entireHome > img{
+  user-select: none;
+  -webkit-user-drag: none;
+}
+#contactHost > img{
+  user-select: none;
+  -webkit-user-drag: none;
+}
+#sleepingArrangements > img{
+  user-select: none;
+  -webkit-user-drag: none;
+}
+#amenities > img{
+  user-select: none;
+  -webkit-user-drag: none;
+}
+#amenities > img{
+  user-select: none;
+  -webkit-user-drag: none;
+}
+#calendar > img {
+  user-select: none;
+  -webkit-user-drag: none;
+}

@@ -58,7 +58,6 @@ function DateSelection({ onDropdown, dateSelectionProps: { checkingDates, setChe
     if (targetValue === '') {
       if (checkingType === 'in') {
         setCheckInDate(undefined);
-        // setCheckInDateSet(false);
         setFocusedDate(undefined);
       } else if (checkingType === 'out') {
         setCheckOutDate(undefined);
@@ -73,7 +72,6 @@ function DateSelection({ onDropdown, dateSelectionProps: { checkingDates, setChe
       if (checkingType === 'in') {
         setCheckInDate(new Date(year, month, day));
         setFocusedDate(new Date(year, month, day));
-        // setCheckInDateSet(true);
         e.target.children[0].blur();
         textInput.current.focus();
       } else if (checkingType === 'out') {
@@ -88,23 +86,21 @@ function DateSelection({ onDropdown, dateSelectionProps: { checkingDates, setChe
       <div className={`${styles.checkingContainer} ${styles.dropdown}`} >
         <div className={styles.insideCheckingContainer}>
           <span className={`${styles.checkIn} ${styles.box} ${focusedCheckIn ? styles.focused : ''}`}>
-            <label for="checkIn">
+            <label htmlFor="checkIn">
               <div className={styles.checkLargeText}>Check-In</div>
-              {/* <div className={styles.checkSmallText}>{checkInDefined ? checkInDateStr : 'Add date'}</div> */}
               <form onSubmit={(e) => submitCheckIn(e)}>
-                <input id="checkIn" placeholder={focusedCheckIn ? "MM/DD/YYYY" : "Add date"} type="text" onFocus={flipCheckInFocus} onBlur={(e) => (flipCheckInFocus(e))} value={checkInInput} onChange={(e) => setCheckInInput(e.target.value)} autoFocus={!checkInDefined}autocomplete="off"></input>
+                <input id="checkIn" placeholder={focusedCheckIn ? "MM/DD/YYYY" : "Add date"} type="text" onFocus={flipCheckInFocus} onBlur={(e) => (flipCheckInFocus(e))} value={checkInInput} onChange={(e) => setCheckInInput(e.target.value)} autoFocus={!checkInDefined} autoComplete="off"></input>
               </form>
             </label>
           </span>
           <span className={`${styles.checkOut} ${styles.box} ${focusedCheckOut ? styles.focused : ''} ${checkInDefined ? ''
-          : styles.disabled}`}>
-            <label for="checkOut">
+            : styles.disabled}`}>
+            <label htmlFor="checkOut">
               <div className={styles.checkLargeText}>CheckOut</div>
               <form onSubmit={(e) => submitCheckIn(e)} className={checkInDefined ? ''
-          : styles.disabled}>
-                <input id="checkOut" ref={textInput} placeholder={focusedCheckOut ? "MM/DD/YYYY" : "Add date"} type="text" value={checkOutInput} onFocus={flipCheckOutFocus} onBlur={flipCheckOutFocus} value={checkOutInput} onChange={(e) => setCheckOutInput(e.target.value)} disabled={checkInDate ? false : true} autoFocus={checkInDefined} autocomplete="off"/>
+                : styles.disabled}>
+                <input id="checkOut" ref={textInput} placeholder={focusedCheckOut ? "MM/DD/YYYY" : "Add date"} type="text" value={checkOutInput} onFocus={flipCheckOutFocus} onBlur={flipCheckOutFocus} value={checkOutInput} onChange={(e) => setCheckOutInput(e.target.value)} disabled={checkInDate ? false : true} autoFocus={checkInDefined} autoComplete="off" />
               </form>
-              {/* <div className={styles.checkSmallText}>{checkOutDefined ? checkOutDateStr : 'Add date'}</div> */}
             </label>
           </span>
         </div>
@@ -112,7 +108,7 @@ function DateSelection({ onDropdown, dateSelectionProps: { checkingDates, setChe
     );
   }
   return (
-    <div className={`${styles.checkingContainer} ${onDropdown ? styles.dropdown : styles.notDropdown}`} onClick={!onDropdown ? dropDownCheckingToggle : () => (console.log('notthis'))}>
+    <div className={`${styles.checkingContainer} ${onDropdown ? styles.dropdown : styles.notDropdown}`} onClick={dropDownCheckingToggle}>
       <div className={styles.insideCheckingContainer}>
         <span className={`${styles.checkIn} ${styles.box}`}>
           <div className={styles.checkLargeText}>Check-In</div>
@@ -125,21 +121,6 @@ function DateSelection({ onDropdown, dateSelectionProps: { checkingDates, setChe
       </div>
     </div>
   );
-
-  // return (
-  //   <div className={`${styles.checkingContainer} ${onDropdown ? styles.dropdown : styles.notDropdown}`} onClick={!onDropdown ? dropDownCheckingToggle : ()=>(console.log('notthis'))}>
-  //     <div className={styles.insideCheckingContainer}>
-  //       <span className={`${styles.checkIn} ${styles.box}`}>
-  //         <div className={styles.checkLargeText}>Check-In</div>
-  //         <div className={styles.checkSmallText}>{checkInDefined ? checkInDateStr : 'Add date'}</div>
-  //       </span>
-  //       <span className={`${styles.checkOut} ${styles.box}`}>
-  //         <div className={styles.checkLargeText}>CheckOut</div>
-  //         <div className={styles.checkSmallText}>{checkOutDefined ? checkOutDateStr : 'Add date'}</div>
-  //       </span>
-  //     </div>
-  //   </div>
-  // );
 }
 DateSelection.propTypes = {
   // onDropdown: PropTypes.bool.isRequired,

@@ -1,7 +1,7 @@
 module.exports = {
   setupFilesAfterEnv: ['jest-enzyme'],
   testEnvironment: 'enzyme',
-  converageDirectory: 'coverage',
+  coverageDirectory: 'coverage',
   moduleFileExtensions: ['js', 'jsx', 'css'],
   testEnvironmentOptions: {
     enzymeAdapter: 'react16',
@@ -14,4 +14,8 @@ module.exports = {
     '^.+\\.jsx$': 'babel-jest',
     '.+\\.(css|styl|less|sass|scss)$': 'jest-css-modules-transform',
   },
+  rootDir: './../../',
+  collectCoverageFrom: [
+    '**/components/*.jsx',
+  ],
 };

@@ -78,7 +78,7 @@ function Calendar({ props: { setCheckInDate, setCheckOutDate, setCheckingDatesSe
       <div id={styles.calendarBar}>
         <button className={`${styles.backButton} ${moveBackBool ? '' : styles.disabled}`} type="button" onClick={decreaseMonth} disabled={!moveBackBool}>
           <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false">
-            <path d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z" fill-rule="evenodd" />
+            <path d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z" fillRule="evenodd" />
           </svg>
         </button>
         <span className={`${styles.leftMonthSpan} ${backRender ? styles.animateBack : ''} ${forwardRender ? styles.animateForward : ''}`} key={offGridLeftDate.getTime() - 1}>{`${dateLeft.toLocaleString('default', { month: 'long', year: 'numeric' })}`}</span>

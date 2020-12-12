@@ -27,3 +27,5 @@ build/
 db/jsons/
 package-lock.json
 globalConfig.json
+
+*.csv

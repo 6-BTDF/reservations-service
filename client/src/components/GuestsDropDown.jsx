@@ -20,7 +20,7 @@ function GuestsDropDown({ dropdown, changeGuests, adultsNum, setAdultsNum, child
       <div className={`${styles.adults} ${styles.cell}`}>Adults</div>
       <div className={`${styles.adultsButton} ${styles.cell}`}>
         <button className={`${styles.minusButton} ${adultsNum < 2 ? styles.disabledButton : ''}`} disabled={!(adultsNum - 1)} type="button" onClick={() => decNum(setAdultsNum, adultsNum)}>-</button>
-        <text>{` ${adultsNum} `}</text>
+        {` ${adultsNum} `}
         <button className={styles.addButton} type="button" onClick={() => incNum(setAdultsNum, adultsNum)}>+</button>
       </div>
       <div className={`${styles.children} ${styles.cell}`}>
@@ -29,7 +29,7 @@ function GuestsDropDown({ dropdown, changeGuests, adultsNum, setAdultsNum, child
       </div>
       <div className={`${styles.childrenButton} ${styles.cell}`}>
         <button className={`${styles.minusButton} ${childrenNum < 1 ? styles.disabledButton : ''}`} disabled={!(childrenNum)} type="button" onClick={() => decNum(setChildrenNum, childrenNum)}>-</button>
-        <text>{` ${childrenNum} `}</text>
+        {` ${childrenNum} `}
         <button className={styles.addButton} type="button" onClick={() => incNum(setChildrenNum, childrenNum)}>+</button>
       </div>
       <div className={`${styles.infants} ${styles.cell}`}>
@@ -38,11 +38,11 @@ function GuestsDropDown({ dropdown, changeGuests, adultsNum, setAdultsNum, child
       </div>
       <div className={`${styles.infantsButton} ${styles.cell}`}>
         <button className={`${styles.minusButton} ${infantsNum < 1 ? styles.disabledButton : ''}`} disabled={!(infantsNum)} type="button" onClick={() => decNum(setInfantsNum, infantsNum)}>-</button>
-        <text>{` ${infantsNum} `}</text>
+        {` ${infantsNum} `}
         <button className={styles.addButton} type="button" onClick={() => incNum(setInfantsNum, infantsNum)}>+</button>
       </div>
       <div className={`${styles.dropdownBottomText} ${styles.cell}`}>
-        <text>{'6 guests maximum. Infants don\'t count toward the number of guests.'}</text>
+        {'6 guests maximum. Infants don\'t count toward the number of guests.'}
       </div>
       <div className={`${styles.close} ${styles.cell}`}>
         <button id={styles.closeButton} type="button" onClick={dropdown}>Close</button>

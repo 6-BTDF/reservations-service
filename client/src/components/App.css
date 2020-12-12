@@ -1,13 +1,17 @@
 .mainContainer {
   max-height:429px;
   max-width:330px;
-  margin: auto;
   border: solid 1px rgb(221, 221, 221);
   padding: 24px;
   border-radius: 12px;
   box-shadow: 0px 6px 16px rgb(221, 221, 221);
   text-align: center;
   position: sticky;
+  margin-top: 0px;
+  margin-left: 20%;
+  margin-bottom: auto;
+  top: 0;
+  font-family: sans-serif;
 }
 .mainGrid {
   max-width: 100%;

@@ -5,7 +5,7 @@ const helpers = require('./helpers.js');
 const models = require('./models.js');
 
 const seedDatabase = (entryCount) => {
-  mongoose.connect('mongodb://localhost/FEC', { useNewUrlParser: true })
+  mongoose.connect('mongodb://localhost/FEC', { useNewUrlParser: true, useUnifiedTopology: true})
     .catch((err) => console.error(err));
   const entries = new Array(entryCount).fill(undefined);
   const listings = entries.map((id, index) => helpers.generateListing(index));

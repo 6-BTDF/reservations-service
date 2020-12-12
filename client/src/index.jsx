@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import ReactDOM from 'react-dom';
 import React from 'react';
-import App from './components/App.jsx';
+import Container from './components/Container.jsx';
 
-ReactDOM.render(<App />, document.getElementById('service2'));
+ReactDOM.render(<Container />, document.getElementById('service2'));
