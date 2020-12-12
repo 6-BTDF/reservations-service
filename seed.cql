@@ -1,0 +1,1 @@
+COPY herkbath.listings(hotel_id,max_guests,min_stay,max_stay, dailyPrice, cleaningFee, serviceFee, taxes, holidayPremium, weekendPremium, weeklyDiscount,  monthlyDiscount) FROM 'C:/Users/icecr/hrsf131 repos/sdc1/reservations-service/cassandra/cassListingstest.csv' with HEADER=TRUE and delimiter = '|';

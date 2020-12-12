@@ -23,6 +23,7 @@ function App() {
     const listingID = window.location.pathname.split('/')[2];
     return axios.get(`/api/listings/${isNaN(listingID) ? 0 : listingID}`)
       .then((response) => {
+        console.log(response.data);
         setListingData(response.data);
       })
       .catch((err) => {
@@ -95,7 +96,7 @@ function App() {
       <div className={styles.mainGrid}>
         <span className={styles.mainPrice}>
           <span id={styles.mainPriceAmount}>
-            {`$${listingData === undefined ? '' : listingData[0].fees.pernight}`}
+            {`$${listingData === undefined ? '' : Math.trunc(listingData.dailyprice)}`}
           </span>
           <span id={styles.mainPricePerNight}>/ night</span>
         </span>
