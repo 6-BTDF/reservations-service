@@ -34,3 +34,6 @@ dsbulk-1.7.0/
 dsbulk-1.7.0.tar.gz
 
 newrelic.js
+
+*.pem
+herkbath.pem

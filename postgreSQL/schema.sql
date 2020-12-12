@@ -28,7 +28,7 @@ CREATE TABLE herkbath.listings (
   max_guests SMALLINT DEFAULT 4 NOT NULL CONSTRAINT positive_max_guests CHECK (max_guests < 17),
   min_stay SMALLINT DEFAULT 1 CONSTRAINT positive_min_stay CHECK (min_stay > 0),
   max_stay SMALLINT DEFAULT NULL CONSTRAINT positive_max_stay CHECK (max_stay > 0),
-  PRIMARY KEY (id)
+  PRIMARY KEY (listings_id)
 )
 
 
@@ -42,7 +42,7 @@ DROP TABLE IF EXISTS herkbath.users
 CREATE TABLE herkbath.users (
   users_id INT GENERATED ALWAYS AS IDENTITY,
   username CHAR(30) NOT NULL,
-  PRIMARY KEY (id)
+  PRIMARY KEY (users_id)
 )
 
 
@@ -63,7 +63,7 @@ CREATE TABLE herkbath.bookings (
   infants SMALLINT DEFAULT 0 CONSTRAINT positive_infants CHECK (infants >= 0),
   id_listings INT,
   id_users INT,
-  PRIMARY KEY (id)
+  PRIMARY KEY (bookings_id)
 )
 
 -- CONSTRAINT fk_listings references herkbath.listings(id) ON DELETE CASCADE
