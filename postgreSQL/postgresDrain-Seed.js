@@ -81,7 +81,6 @@ const usersGen = () => {
   writeUsers.pipe(fs.createWriteStream('postgresUsers.csv'));
   for (let i = 0; i < 1000000; i++) {
     writeUsers.write({
-      id: counter++,
       username: faker.internet.userName(),
     });
   }

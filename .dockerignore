@@ -1,0 +1,17 @@
+postgreSQL/
+
+cassandra/
+
+.env
+
+node_modules
+
+.gitignore
+
+package-lock.json
+
+dsbulk-1.7.0
+
+dsbulk-1.7.0.tar.gz
+
+newrelic_agent.log

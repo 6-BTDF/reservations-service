@@ -1,9 +1,9 @@
 /* eslint-disable linebreak-style */
-const pool = require('../db/models.js');
+const client = require('../db/models.js');
 
 // get specific reservation
 function getReservation(req, res) {
-  pool.query(`SELECT * FROM herkbath.bookings WHERE bookings_id = ${req.params.id}`, (err, listings) => {
+  client.query(`SELECT * FROM herkbath.bookings WHERE bookings_id = ${req.params.id}`, (err, listings) => {
     if (err) {
       res.sendStatus(500);
     } else {
@@ -19,7 +19,7 @@ function makeReservation(req, res) {
   const keys = Object.keys(req.body);
   const vals = `'${Object.values(req.body).join("','")}'`;
 
-  pool.query(`INSERT INTO herkbath.bookings (${keys}) VALUES (${vals})`, (err, listings) => {
+  client.query(`INSERT INTO herkbath.bookings (${keys}) VALUES (${vals})`, (err, listings) => {
     if (err) {
       res.sendStatus(500);
     } else {
@@ -32,7 +32,7 @@ function makeReservation(req, res) {
 
 // delete for single listing
 function deleteReservation(req, res) {
-  pool.query(`DELETE FROM herkbath.bookings WHERE bookings_id = ${req.body.bookings_id}`, (err, listings) => {
+  client.query(`DELETE FROM herkbath.bookings WHERE bookings_id = ${req.body.bookings_id}`, (err, listings) => {
     if (err) {
       res.sendStatus(500);
     } else {

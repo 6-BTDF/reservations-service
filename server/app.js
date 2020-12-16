@@ -11,6 +11,7 @@ const app = express();
 app.use(express.json());
 // app.use('/api/listings/:id', express.static(path.join(__dirname, '..', 'client', 'dist')));
 app.use('/listings/:id', express.static(path.join(__dirname, '..', 'client', 'dist')));
+app.use('/loaderio-2bf39656ece22ae9da1c2fbb1b8f4ba6/', express.static(path.join(__dirname, '..', 'client', 'dist', 'loaderio-2bf39656ece22ae9da1c2fbb1b8f4ba6.txt')))
 
 app.get('/api/listings/:id', listings.getListing);
 app.post('/api/listings/:id/newListing', listings.addListing);

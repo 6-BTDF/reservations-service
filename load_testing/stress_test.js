@@ -27,7 +27,7 @@ export const options = {
 const random = (num, skew = 1) => Math.floor(Math.random() ** skew * num);
 
 export default function () {
-  const res = http.get(`http://localhost:3002/api/listings/${random(10000000)}`);
+  const res = http.get(`http://54.153.127.241:3002/api/listings/${random(10000000)}`);
 
   const result = check(res, {
     'status code MUST be 200': (r) => r.status === 200,
