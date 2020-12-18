@@ -3,7 +3,7 @@ const client = require('../db/models.js');
 
 // get for single listing
 function getListing(req, res) {
-  client.query(`select u.username, l.*, JSON_agg(json_build_object('check_in', b.check_in, 'check_out', b.check_out)) AS reserved from herkbath.listings l INNER JOIN herkbath.bookings b ON l.listings_id = b.id_listings INNER JOIN herkbath.users u ON l.owner = u.users_id WHERE l.listings_id = ${req.params.id} group by l.listings_id, u.username`, (err, listings) => {
+  client.query(`select u.username, l.*, JSON_agg(json_build_object('check_in', b.check_in, 'check_out', b.check_out)) AS reserved from herkbath.listings l LEFT JOIN herkbath.bookings b ON l.listings_id = b.id_listings INNER JOIN herkbath.users u ON l.owner = u.users_id WHERE l.listings_id = ${req.params.id} group by l.listings_id, u.username`, (err, listings) => {
     if (err) {
       res.sendStatus(500);
     } else {
