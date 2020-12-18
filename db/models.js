@@ -1,21 +1,10 @@
-const { Client, Pool } = require('pg');
-const path = require('path');
+const { Pool } = require('pg');
 
-const client = new Client({
-  host: '',
-  user: 'ec2-user',
-  database: 'sdc',
-  password: '',
-  port: 5432,
-  // max: 20,
-  // idleTimeoutMillis: 30000,
-  // connectionTimeoutMillis: 2000,
-});
 // eslint-disable-next-line linebreak-style
 
 const pool = new Pool({
-  host: '',
-  user: 'ec2-user',
+  host: 'localhost',
+  user: 'postgres',
   database: 'sdc',
   password: '',
   port: 5432,
@@ -24,13 +13,10 @@ const pool = new Pool({
   connectionTimeoutMillis: 2000,
 });
 
-client.connect()
-  .then((response) => { console.log('connected to postgres db for client!'); })
-  .catch((err) => { console.log(err); });
 
-pool.connect()
-  .then((response) => { console.log('connected to postgres db for pool!'); })
-  .catch((err) => { console.log(err); });
+pool.on('err', (err, client) => {
+  console.error('unexpected error on idle client', err);
+  process.exit(-1);
+});
 
-module.exports = client;
 module.exports = pool;
