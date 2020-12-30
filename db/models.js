@@ -1,19 +1,22 @@
-const mongoose = require('mongoose');
-/**
- * Schemas
- */
-const listingSchema = new mongoose.Schema({
-  id: Number,
-  owner: String,
-  name: String,
-  reserved: Array,
-  fees: {
-    pernight: Number,
-    cleaning: Number,
-    service: Number,
-  },
+const { Pool } = require('pg');
+
+// eslint-disable-next-line linebreak-style
+
+const pool = new Pool({
+  host: 'localhost',
+  user: 'ec2-user',
+  database: 'sdc',
+  password: '',
+  port: 5432,
+  max: 20,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 2000,
 });
-const Listing = mongoose.model('Listing', listingSchema);
-module.exports = {
-  listingModel: Listing,
-};
+
+
+pool.on('err', (err, client) => {
+  console.error('unexpected error on idle client', err);
+  process.exit(-1);
+});
+
+module.exports = pool;

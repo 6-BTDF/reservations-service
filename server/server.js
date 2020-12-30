@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
-const mongoose = require('mongoose');
+require('newrelic');
 const app = require('./app.js');
 
+
 const port = 3002;
-mongoose.connect('mongodb://localhost/FEC', { useNewUrlParser: true, useUnifiedTopology: true});
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
