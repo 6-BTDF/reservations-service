@@ -11,7 +11,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 // app.use('/api/listings/:id', express.static(path.join(__dirname, '..', 'client', 'dist')));
 app.use('/houses/:id', express.static(path.join(__dirname, '..', 'client', 'dist')));
-// app.use('/', (req, res) => { res.send(''); });
+app.use('/loaderio-d2fc29b535d6371e27e11b3d8508c46b', (req, res) => { res.send('loaderio-d2fc29b535d6371e27e11b3d8508c46b'); });
 
 app.get('/api/houses/:id', listings.getListing);
 app.post('/api/houses/:id/newListing', listings.addListing);
