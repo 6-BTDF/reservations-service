@@ -13,8 +13,8 @@ Reservations component for a vacation rental marketplace site
 1. [Usage](#Usage)
 2. [Requirements](#requirements)
 3. [Development](#development)
-4. [Installing Dependencies](#dependencies) 
-5. [API Endpoints](#endpoints)
+4. [Installing Dependencies](#installing-dependencies) 
+5. [API Endpoints](#api-endpoints)
 
 ## Usage
 
