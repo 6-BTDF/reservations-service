@@ -4,9 +4,9 @@ Reservations component for a vacation rental marketplace site
 
 ## Related Projects
 
-  - https://github.com/6-BTDF/ImageCarousel-Service
-  - https://github.com/6-BTDF/more-places-service
-  - https://github.com/6-BTDF/reviews-service
+  - https://git.io/JtvFB
+  - https://git.io/JtvF0
+  - https://git.io/JtvFu
 
 ## Table of Contents
 
@@ -18,8 +18,7 @@ Reservations component for a vacation rental marketplace site
 
 ## Usage
 
-- Access the individual component through
-- Access the site in whole through 
+- Access the individual component through client/src/index.js
 - Change listings by modifying the numerical value after the site, e.g. from 
 
 ## Requirements
@@ -29,6 +28,13 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 - Node 6.13.0
 
 ## Development
+
+Developed using Babel webpack and Node.js. To start a development bundle and server, run:
+
+```sh
+npm run build
+npm run start
+```
 
 ## Installing Dependencies
 
