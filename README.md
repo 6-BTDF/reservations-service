@@ -51,20 +51,57 @@ npm run build
 
 API endpoints conform to a RESTful API architecture to retrieve and modify database-hosted information. All responses will include HTTP response codes to indicate status and errors and data will come in JSON pretty format. All requests must include a Content-Type of application/json and the body must be valid JSON.
 
-**POST /api/listings/newListing**
-- POST request for a single listing
+
+<h3>Listings Routes</h3>
+------------------------
+
+**`GET` /api/listings/:listingid**
+- This endpoint retrieves information for a house listing
+- `GET` request for a single listing id
+- Request parameter of `:listingid` from API endpoint will be accepted. No request object is required.
+- Response will be HTTP status code `200` and a JSON object that contains property at the given ID with respective fees and all booked reservation dates
+- Response object returned as:
+```sh
+{ owner: String, 
+  listings_name: String, 
+  dailyPrice: Number, 
+  cleaningFee: Number, 
+  serviceFee: Number, 
+  taxes: Number, 
+  max_guests: Number, 
+  min_stay: Number, 
+  max_stay: Number, 
+  monthlyDiscount: Number, 
+  weeklyDiscount: Number, 
+  holidayPremium: Number, 
+  weekendPremium: Number, 
+  reserved: [{check-in: ISO Date, check out: ISO Date}]
+ }
+ ```
+
+**`POST` /api/listings/newListing**
 - This endpoint allows you to create a new listing for a house
-- Takes a valid JSON object and will return 201 HTTP code if listing is saved successfully
+- `POST` request for a single listing
+- Takes a valid JSON object and will return `201` HTTP code if listing is saved successfully
 - Request field will be accepted where dailyPrice, cleaningFee and taxes are required and other parameters are optional but highly recommended. Default values will be assigned to the other objects but this may not be the desired charges.
-```{ owner: Integer, listings_name: String [dailyPrice: Number, cleaningFee: Number, serviceFee: Number, taxes: Number, max_guests: Number, min_stay: Number, max_stay: Number, monthlyDiscount: Number, weeklyDiscount: Number, holidayPremium: Number, weekendPremium: Number]}```
+```sh
+{ owner: Integer, 
+  listings_name: String 
+  [dailyPrice: Number, 
+  cleaningFee: Number, 
+  serviceFee: Number, 
+  taxes: Number, 
+  max_guests: Number, 
+  min_stay: Number, 
+  max_stay: Number, 
+  monthlyDiscount: Number, 
+  weeklyDiscount: Number, 
+  holidayPremium: Number, 
+  weekendPremium: Number]
+}
+```
 
-**GET /api/listings/:listingid**
-- GET request for a single listing
-- Request parameter of :listingid from API endpoint will be accepted. No request object is required.
-- Response will be HTTP status code 200 and a JSON object that contains property at the given ID with respective fees and all booked reservation dates
-```{ owner: String, listings_name: String, dailyPrice: Number, cleaningFee: Number, serviceFee: Number, taxes: Number, max_guests: Number, min_stay: Number, max_stay: Number, monthlyDiscount: Number, weeklyDiscount: Number, holidayPremium: Number, weekendPremium: Number, reserved: [{check-in: ISO Date, check out: ISO Date}]}```
-
-**PATCH /api/listings/:listingid/updateListing**
+**`PATCH` /api/listings/:listingid/updateListing**
 - PATCH request for a single listing
 - This endpoint allows you to modify a listing for fees, discounts, max guests, max stays
 - Takes a valid JSON object and will return 204 HTTP code if reservation is saved successfully
