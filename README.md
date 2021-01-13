@@ -127,6 +127,7 @@ API endpoints conform to a RESTful API architecture to retrieve and modify datab
  }
 ```
 
+
 **`DELETE` /api/listings/:listingid/deleteListing**
 • This will delete the listing and all associated information for listing's reservations
 • `DELETE` request for a single reservation
