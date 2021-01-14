@@ -19,7 +19,7 @@ Reservations component for a vacation rental marketplace site
 ## Usage
 
 - Access the individual component through client/src/index.js
-- Change listings by modifying the numerical value after the site, e.g. from 
+- Change listings by modifying the numerical value after the site, e.g. from /api/listings/15 to /api/listings/20
 
 ## Requirements
 
